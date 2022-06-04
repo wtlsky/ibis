@@ -103,18 +103,18 @@ export default class Ibis {
     this.lastView = this._slate.children.length
   }
 
-  ibELementToVnode (type, renderConf) {
-    const render = this.renders.get(type)
-    return render(renderConf, vnodeHelper.bind(this), this)
+  ibELementToVnode (renderConf) {
+    const render = this.renders.get(renderConf.type)
+    return render(renderConf, vnodeHelper.bind(this), this.ibELementToVnode.bind(this))
   }
 
   updateView () {
     const newVnode = toVNode(this.contentEl)
     newVnode.children = this._slate.children.map(item => {
-      const node = this.ibELementToVnode(item.type, item)
+      const node = this.ibELementToVnode(item)
       return node
     })
-    patch(toVNode(this.contentEl), newVnode)
+   this.oldVnode = patch(this.oldVnode || toVNode(this.contentEl), newVnode)
   }
 
   isElement (node) {

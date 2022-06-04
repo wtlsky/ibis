@@ -3,8 +3,7 @@ export default class Table {
   constructor(editor) {
 
     const button = editor.createToolbar({
-      class: 'IbisIcon ibis-icon-table',
-      lebel: '表'
+      class: 'IbisIcon ibis-icon-table'
     })
 
     button.on('click', () => {
@@ -19,15 +18,15 @@ export default class Table {
       type: 'table', // 必须指定type属性
       children: [
         {
-          type: 'tr',
+          type: 'tableRow',
           children: [
             {
-              type: 'td',
-              text: '1'
-            },
-            {
-              type: 'td',
-              text: '1'
+              type: 'tableColumn',
+              children: [
+                {
+                  text: '1'
+                }
+              ]
             }
           ]
         }
