@@ -1,0 +1,9 @@
+.ibis-editor {
+  .ibis-content {
+    min-height: 400px;
+    max-height: 500px;
+    border: 1px solid #ccc;
+    outline: none;
+    overflow: auto;
+  }
+}
